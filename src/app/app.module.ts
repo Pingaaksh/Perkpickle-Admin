@@ -14,6 +14,7 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { MyHttpInterceptor } from './modules/shared/http.interceptor';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { LogoutComponent } from './modules/logout/logout.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 @NgModule({
   declarations: [
     AppComponent,
@@ -28,10 +29,11 @@ import { LogoutComponent } from './modules/logout/logout.component';
     ReactiveFormsModule,
     TemplateModule,
     AlertModule,
+    BrowserAnimationsModule,
     NgxSpinnerModule,
-    AppRoutingModule
+    AppRoutingModule   
   ],
-  exports: [TemplateModule, FormsModule, ReactiveFormsModule, AlertModule],
+  exports: [ FormsModule, ReactiveFormsModule],
   providers: [BsModalService, AuthGuard, AuthService,
     MyHttpInterceptor, {
       provide: HTTP_INTERCEPTORS,

@@ -69,10 +69,21 @@
             <div class="job">Web administrator</div>
           </div>
         </div>
-       <a routerLink="/logout"> <i class="bx bx-log-out" id="log_out" ></i></a>
+      <i class="bx bx-log-out" id="log_out" (click)="clickMe('logout')" style="cursor: pointer;"></i>
       </li>
     </ul>
   </div>
-  <section class="home-section ps-2 pe-2">
-    <router-outlet></router-outlet>
+  <section class="home-section">
+    <div class="row">
+      <div class="col-md-12">
+        <app-header></app-header>
+      </div>
+    </div>
+    <div class="row ms-0 me-0">
+      <div class="col-md-12 ps-4 pe-3">     
+        <router-outlet></router-outlet>
+      </div>
+    </div>
+     
+   
   </section>

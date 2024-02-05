@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable, catchError, tap, throwError } from 'rxjs';
 import { AuthService } from '../auth/auth.service';
-
+import { environment } from '../../../environments/environment';
 @Injectable()
 export class MyHttpInterceptor implements HttpInterceptor {
   constructor(public authService:AuthService,public router: Router) {
@@ -14,15 +14,15 @@ export class MyHttpInterceptor implements HttpInterceptor {
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
     let AuthRequest = req;
-    if(this.authService.loggedIn) 
-    {
-      const token =  this.authService.getToken();
-    // if the token is  stored in localstorage add it to http header
-    const headers = req.headers.set("authorization",""+ token);
+    // if(this.authService.loggedIn) 
+    // {
+    //   const token =  this.authService.getToken();
+    // // if the token is  stored in localstorage add it to http header
+    //  const headers = req.headers.set('Authorization', "Bearer "+ token);
 
-      //clone http to the custom AuthRequest and send it to the server 
-    AuthRequest = req.clone( { headers: headers});
-    }
+    //  // clone http to the custom AuthRequest and send it to the server 
+    // AuthRequest = req.clone( { headers: headers});
+    // }
     return next.handle(AuthRequest).pipe(
       tap(evt => {
         if (evt instanceof HttpResponse) {

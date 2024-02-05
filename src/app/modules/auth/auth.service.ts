@@ -6,7 +6,7 @@ export class AuthService {
   private isActiveSubscription = false;
   constructor(private http: HttpClient) {}
   setToken(token:any,userInfo:any){
-    localStorage.setItem("isLoggedIn", "true");
+    localStorage.setItem("isLoggedInPerkPickel", "true");
     localStorage.setItem("access-token",token);
     localStorage.setItem("userInfo",JSON.stringify(userInfo));
   }
@@ -23,11 +23,11 @@ export class AuthService {
   logout() {  
     localStorage.removeItem('access-token'); 
     localStorage.removeItem('userInfo'); 
-    localStorage.setItem("isLoggedIn", "false");
+    localStorage.setItem("isLoggedInPerkPickel", "false");
     //localStorage.clear(); 
   }  
   public get checkIsLoggedIn(): boolean {  
-    if(localStorage.getItem('isLoggedIn') === 'true') {
+    if(localStorage.getItem('isLoggedInPerkPickel') === 'true') {
       return true;
     }
     return false;

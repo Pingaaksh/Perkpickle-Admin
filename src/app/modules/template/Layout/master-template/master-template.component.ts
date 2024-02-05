@@ -14,18 +14,12 @@ export class MasterTemplateComponent {
   ngOnInit() {
     this.sidebar = document.querySelector('.sidebar');
     this.closeBtn = document.querySelector('#btn');
-    this.searchBtn = document.querySelector('.bx-search');
 
     this.closeBtn.addEventListener('click', () => {
       this.sidebar.classList.toggle('open');
       this.menuBtnChange(); //calling the function(optional)
       });
 
-      // this.searchBtn.addEventListener('click', () => {
-      //   // Sidebar open when you click on the search iocn
-      //   this.sidebar.classList.toggle('open');
-      //   this.menuBtnChange(); //calling the function(optional)
-      // });
   }
  
 
