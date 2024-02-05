@@ -13,11 +13,13 @@ import { AuthService } from './modules/auth/auth.service';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { MyHttpInterceptor } from './modules/shared/http.interceptor';
 import { NgxSpinnerModule } from 'ngx-spinner';
+import { LogoutComponent } from './modules/logout/logout.component';
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    HomeComponent
+    HomeComponent,
+    LogoutComponent
   ],
   imports: [
     BrowserModule,
