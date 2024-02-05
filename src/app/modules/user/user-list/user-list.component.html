@@ -1,0 +1,20 @@
+<table class="table">
+    <thead>
+        <tr>
+          <th >First Name</th>
+          <th >Last Name</th>
+          <th >Email</th>
+          <th width="20%">Cards</th>
+          <th >Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of userData">
+            <td>{{item.first_name}}</td>
+            <td>{{item.last_name}}</td>
+            <td class="text-break">{{item.email}}</td>
+            <td class="text-break" width="20%">{{item.card_keys}}</td>
+            <td></td>
+        </tr>
+      </tbody>
+</table>
