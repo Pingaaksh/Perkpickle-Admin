@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { AlertService } from '../../shared/alert';
 import { Router } from '@angular/router';
 import { UserService } from '../user.service';
 
@@ -10,7 +9,7 @@ import { UserService } from '../user.service';
 })
 export class UserListComponent {
   userData:any[] = [];
-  constructor(public router: Router, public alertService:AlertService, private userService:UserService ) {
+  constructor(public router: Router,  private userService:UserService ) {
 
   }
   ngOnInit() {

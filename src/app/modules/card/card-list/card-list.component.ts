@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { AlertService } from '../../shared/alert';
 import { CardService } from '../card.service';
 
 @Component({
@@ -10,7 +9,7 @@ import { CardService } from '../card.service';
 })
 export class CardListComponent {
   cardData:any[] = [];
-  constructor(public router: Router, public alertService:AlertService, private cardService:CardService ) {
+  constructor(public router: Router,  private cardService:CardService ) {
 
   }
   ngOnInit() {

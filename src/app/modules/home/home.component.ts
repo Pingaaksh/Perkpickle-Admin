@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { AlertService } from '../shared/alert';
 import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
@@ -8,12 +7,10 @@ import { NgxSpinnerService } from 'ngx-spinner';
   styleUrl: './home.component.scss'
 })
 export class HomeComponent {
-  constructor(public alertService:AlertService,private spinner: NgxSpinnerService ) {
+  constructor(private spinner: NgxSpinnerService ) {
      
   }
 
   ngOnInit() {
-  // this.spinner.show();
-    this.alertService.error("Login Successfully!")
   }
 }

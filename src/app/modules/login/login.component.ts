@@ -3,7 +3,6 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { LoginService } from './login.service';
 import { AuthService} from '../auth/auth.service';
-import { AlertService } from '../shared/alert';
 import { NgxSpinnerService } from "ngx-spinner";
 @Component({
   selector: 'app-login',
@@ -14,7 +13,7 @@ export class LoginComponent {
   loginForm: any;
   passwordEyeHide : boolean = true;
   constructor(public fb: FormBuilder, public router: Router, public authService:AuthService,
-    public loginService:LoginService, public alertService:AlertService,private spinner: NgxSpinnerService ) {
+    public loginService:LoginService, private spinner: NgxSpinnerService ) {
       if (this.authService.loggedIn) {          
           this.router.navigate(['/dashboard']);    
       } 
@@ -53,18 +52,10 @@ export class LoginComponent {
      this.authService.setToken(res.token,userInfo);
      this.spinner.hide();
       this.router.navigate(['/dashboard']); 
-      this.alertService.success("Login Successfully!")
         /** spinner ends after 5 seconds */
       
     }, err => {
       this.spinner.hide();
-      this.alertService.clear();
-       this.alertService.error("UserName and Password is not correct!");
-        window.scroll({ 
-          top: 0, 
-          left: 0, 
-          behavior: 'smooth' 
-      }); 
       console.log("catch", err);
     })
   }

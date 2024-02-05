@@ -7,7 +7,6 @@ import { TemplateModule } from './modules/template/template.module';
 import { LoginComponent } from './modules/login/login.component';
 import { HomeComponent } from './modules/home/home.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { AlertModule} from './modules/shared/alert';
 import { AuthGuard } from './modules/auth/auth.guard';
 import { AuthService } from './modules/auth/auth.service';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
@@ -28,7 +27,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     HttpClientModule,
     ReactiveFormsModule,
     TemplateModule,
-    AlertModule,
     BrowserAnimationsModule,
     NgxSpinnerModule,
     AppRoutingModule   
