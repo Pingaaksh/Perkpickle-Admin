@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserService } from '../user.service';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-user-list',
@@ -9,7 +10,7 @@ import { UserService } from '../user.service';
 })
 export class UserListComponent {
   userData:any[] = [];
-  constructor(public router: Router,  private userService:UserService ) {
+  constructor(public router: Router,  private userService:UserService,private spinner: NgxSpinnerService) {
 
   }
   ngOnInit() {
@@ -17,10 +18,13 @@ export class UserListComponent {
   }
   getAllUser(){
     const userInfo = {};    
+    this.spinner.show();
     this.userService.getAllUserDetails(userInfo).subscribe(res => { 
+      this.spinner.hide();    
       this.userData= res;
       
-    }, err => {      
+    }, err => {  
+      this.spinner.hide();    
       console.log("catch", err);
     })
   }

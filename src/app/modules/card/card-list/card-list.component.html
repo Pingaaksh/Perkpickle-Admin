@@ -1,1 +1,49 @@
-<p>card-list works!</p>
+<div class="row border-bottom border-2 mb-4 border-success">
+    <div class="col-md-6">
+        <h3>Card Information</h3>
+    </div>
+    <div class="col-md-6 text-end">
+        <button (click)="addCard()" class="btn green-btn">Add Card</button>
+    </div>
+</div>
+<table class="table">
+    <thead>
+        <tr>
+         <th></th>
+          <th width="25%">Key</th>
+          <th width="25%">Name</th>
+          <th width="25%"> Card Issuer</th>
+          <th> Status</th>
+          <th >Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of cardData">
+            <td><img [src]=item.card_image_url width="20"  /></td>
+            <td>{{item.card_key}}</td>
+            <td>{{item.card_name}}</td>
+            <td class="text-break">{{item.card_issuer}}</td>
+            <td class="text-break">
+                <span class="badge bg-success" *ngIf="!item.is_disabled">Active</span>
+                <span class="badge bg-danger" *ngIf="item.is_disabled">Inactive</span>
+            </td>
+            <td>
+                <a (click)="editClick(item)" class="danger font-weight-bold">Edit</a> &nbsp; &nbsp;
+                <a (click)="openDeleteModal(item,confirmViewPopup)" class="danger font-weight-bold">Delete</a>
+            </td>
+        </tr>
+      </tbody>
+</table>
+<ng-template #confirmViewPopup>
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Confirmation</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="closePopup()"></button>
+      </div>
+      <div class="modal-body">
+      {{deleteMsg}}
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"  (click)="closePopup()">Cancel</button>
+        <button type="button" class="btn green-btn"  (click)="deleteCard()">Confirm</button>
+      </div>
+</ng-template>

@@ -11,7 +11,7 @@ export class AuthService {
     localStorage.setItem("userInfo",JSON.stringify(userInfo));
   }
   getToken() {
-    return localStorage.getItem('access-token');
+    return (localStorage.getItem('access-token') ? localStorage.getItem('access-token'): "") ;
   }
   getUserInfo() {
     return JSON.parse(localStorage.getItem('userInfo') || '{}');

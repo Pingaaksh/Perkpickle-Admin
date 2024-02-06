@@ -13,7 +13,8 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { MyHttpInterceptor } from './modules/shared/http.interceptor';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { LogoutComponent } from './modules/logout/logout.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { BrowserAnimationsModule, provideAnimations } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,6 +30,11 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     TemplateModule,
     BrowserAnimationsModule,
     NgxSpinnerModule,
+    ToastrModule.forRoot({
+      closeButton: true,
+      timeOut: 15000, // 15 seconds
+      progressBar: true,
+    }),
     AppRoutingModule   
   ],
   exports: [ FormsModule, ReactiveFormsModule],
@@ -37,7 +43,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
       provide: HTTP_INTERCEPTORS,
       useClass: MyHttpInterceptor,
       multi: true,
-    }],
+    }
+  ],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

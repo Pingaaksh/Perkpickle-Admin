@@ -1,1 +1,81 @@
-<p>card-add works!</p>
+<div class="row border-bottom border-2 mb-4 border-success">
+    <div class="col-md-6">
+        <h3 *ngIf="!isEdit">Add Card Detail</h3>
+        <h3 *ngIf="isEdit">Update Card Detail</h3>
+    </div>
+    <div class="col-md-6 text-end">
+        <button (click)="backClick()" class="btn green-btn">Back</button>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-body">
+                <form [formGroup]="cardForm" >
+                    <div class="row mt-4 ms-5 me-5">              
+                        <div class="col-md-6">
+                            <label class="form-label">Card Key<span class="error">*</span> </label>
+                            <input type="text" class="form-control f-14" formControlName="cardKey">
+                            <div *ngIf="cardForm.controls['cardKey'].invalid && (cardForm.controls['cardKey'].dirty || cardForm.controls['cardKey'].touched)" class="error">
+                                <div *ngIf="cardForm.controls['cardKey'].errors['required']">
+                                   Card Key is required.
+                            </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Card Name<span class="error">*</span> </label>
+                            <input type="text" class="form-control f-14" formControlName="cardName">
+                            <div *ngIf="cardForm.controls['cardName'].invalid && (cardForm.controls['cardName'].dirty || cardForm.controls['cardName'].touched)" class="error">
+                                <div *ngIf="cardForm.controls['cardName'].errors['required']">
+                                   Card Name is required.
+                            </div>
+                            </div>
+                        </div>                       
+                    </div>
+                    <div class="row mt-4 ms-5 me-5">              
+                        <div class="col-md-6">
+                            <label class="form-label">Card Issuer<span class="error">*</span> </label>
+                            <input type="text" class="form-control f-14" formControlName="cardIssuer">
+                            <div *ngIf="cardForm.controls['cardIssuer'].invalid && (cardForm.controls['cardIssuer'].dirty || cardForm.controls['cardIssuer'].touched)" class="error">
+                                <div *ngIf="cardForm.controls['cardIssuer'].errors['required']">
+                                   Card Issuer is required.
+                            </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Card Image URL </label>
+                            <input type="text" class="form-control f-14" formControlName="cardImg">
+                            <div *ngIf="cardForm.controls['cardImg'].invalid && (cardForm.controls['cardImg'].dirty || cardForm.controls['cardImg'].touched)" class="error">
+                                <div *ngIf="cardForm.controls['cardImg'].errors['required']">
+                                   Card Image is required.
+                            </div>
+                            </div>
+                        </div>                       
+                    </div>
+                    <div class="row mt-4 ms-5 me-5" >
+                        <div class="col-md-6" *ngIf="isEdit">
+                            <label class="form-label">Status<span class="error">*</span> </label>
+                            <select class="form-select f-14" formControlName="status">
+                                <option value="Active">Active</option>
+                                <option value="Inactive">Inactive </option>                              
+                            </select>
+                            <div *ngIf="cardForm.controls['cardIssuer'].invalid && (cardForm.controls['cardIssuer'].dirty || cardForm.controls['cardIssuer'].touched)" class="error">
+                                <div *ngIf="cardForm.controls['cardIssuer'].errors['required']">
+                                   Status is required.
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mt-3 ms-5 me-5 mb-5">
+                        <div class="col-md-6"></div>
+                        <div class="col-md-6 text-end " >
+                            <button (click)="backClick()" class="btn green-btn">Cancel</button>&nbsp;
+                            <button (click)="saveClick(cardForm)" class="btn green-btn"  [disabled]="!cardForm.valid">Save</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

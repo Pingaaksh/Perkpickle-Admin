@@ -14,17 +14,17 @@ export class MyHttpInterceptor implements HttpInterceptor {
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
     let AuthRequest = req;
-    // if(this.authService.loggedIn) 
-    // {
-    //   const token =  this.authService.getToken();
-    // // if the token is  stored in localstorage add it to http header
-    //  const headers = req.headers.set('Authorization', "Bearer "+ token);
+    if(this.authService.loggedIn) 
+    {
+      let token = this.authService.getToken();
+    // if the token is  stored in localstorage add it to http header
+     const headers = req.headers.set('Authorization',  ""+token);
 
-    //  // clone http to the custom AuthRequest and send it to the server 
-    // AuthRequest = req.clone( { headers: headers});
-    // }
+     // clone http to the custom AuthRequest and send it to the server 
+    AuthRequest = req.clone( { headers: headers});
+    }
     return next.handle(AuthRequest).pipe(
-      tap(evt => {
+      tap(evt => {  
         if (evt instanceof HttpResponse) {
           console.log('status = ', evt.status);
         }
