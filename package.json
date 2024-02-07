@@ -2,8 +2,9 @@
   "name": "admin",
   "version": "0.0.0",
   "scripts": {
-    "heroku-postbuild":"ng build",
+    "ng": "ng",
     "start": "ng serve",
+    "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
     },
