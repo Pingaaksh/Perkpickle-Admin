@@ -13,24 +13,52 @@ export class CardListComponent {
   cardData:any[] = [];
   modalRef!: BsModalRef;
   deleteMsg:any;
+  tableSize = [15, 25, 50, 100];
+  order: string = 'card_key';
+  reverse: boolean = false;
+  searchText: any;
+  p: number = 1;
+  pagingConfig = {
+    currentPage: 1,
+    itemsPerPage: 15,
+    totalItems: 0,
+  };
+   noOfRows = this.pagingConfig.itemsPerPage;
   constructor(public router: Router,  private cardService:CardService,private spinner: NgxSpinnerService,
     private modalService: BsModalService,  private toastrService: ToastrService ) {
 
   }
-  ngOnInit() {
+  ngOnInit() { 
    this.getAllCard();
   }
   getAllCard(){
     this.spinner.show();
     const cardInfo = {};    
     this.cardService.getAllCardDetails(cardInfo).subscribe(res => { 
-      this.spinner.hide();
+       this.spinner.hide();
       this.cardData= res;
-      
+      this.pagingConfig.totalItems = this.cardData.length;
     }, err => {    
       this.spinner.hide();  
       console.log("catch", err);
     })
+  }
+  setOrder(value: string) {
+    if (this.order === value) {
+      this.reverse = !this.reverse;
+    }
+    this.order = value;
+    this.getAllCard();
+  }
+  onTableSizeChange(event: any): void {
+    this.pagingConfig.itemsPerPage = event.target.value;
+    this.pagingConfig.currentPage = 1;
+  }
+  onTableDataChange(event: any) {
+    this.pagingConfig.currentPage = event;
+  }
+  updateFilters(){
+    this.pagingConfig.currentPage = 1;
   }
   addCard(){
     this.router.navigate(['/card/add']);    

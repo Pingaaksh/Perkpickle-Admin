@@ -8,13 +8,13 @@ import { CardEditComponent } from './card-edit/card-edit.component';
 import { CardAddComponent } from './card-add/card-add.component';
 import { SharedModule } from '../shared/shared.module';
 
-
 @NgModule({
   declarations: [
     CardListComponent,
     CardViewComponent,
     CardEditComponent,
     CardAddComponent
+    
   ],
   imports: [
     CommonModule,

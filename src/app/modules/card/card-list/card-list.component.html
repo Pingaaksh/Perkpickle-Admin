@@ -6,6 +6,11 @@
         <button (click)="addCard()" class="btn green-btn">Add Card</button>
     </div>
 </div>
+<div class="row">
+  <div class="col-md-6 mb-3">
+    <input class="form-control" type="text" [(ngModel)]="searchText" placeholder="Search by Card Key and Name" (ngModelChange)="updateFilters()">
+  </div>
+</div>
 <table class="table">
     <thead>
         <tr>
@@ -18,7 +23,8 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let item of cardData">
+        <ng-container  *ngIf="( cardData | paginate : pagingConfig) as result">
+          <tr *ngFor="let item of result">
             <td><img [src]=item.card_image_url width="20"  /></td>
             <td>{{item.card_key}}</td>
             <td>{{item.card_name}}</td>
@@ -32,8 +38,32 @@
                 <a (click)="openDeleteModal(item,confirmViewPopup)" class="danger font-weight-bold">Delete</a>
             </td>
         </tr>
+        </ng-container>
+        
       </tbody>
 </table>
+<div class="row mt-3" *ngIf="this.pagingConfig.totalItems > 0">
+    <div class="col-md-12 text-end">
+      <div class="no-of-row text-end me-2">
+        <label class="control-label no-og-lbl" for="noOfRows"
+          >No. of Rows</label
+        >
+        <select
+          name="noOfRows"
+          (change)="onTableSizeChange($event)"
+          class="form-select form-select-sm"
+        >
+          <option *ngFor="let size of tableSize" [ngValue]="size">
+            {{ size }}
+          </option>
+        </select>
+      </div>
+      <div class="pageing">
+        <pagination-controls (pageChange)="onTableDataChange($event)">
+        </pagination-controls>
+      </div>
+    </div>
+  </div>
 <ng-template #confirmViewPopup>
     <div class="modal-header">
         <h4 class="modal-title" id="modal-basic-title">Confirmation</h4>

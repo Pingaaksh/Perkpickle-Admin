@@ -4,6 +4,11 @@
       <h3>User Information</h3>
   </div>
 </div>
+<div class="row">
+  <div class="col-md-6 mb-3">
+    <input class="form-control" type="text" [(ngModel)]="searchText" placeholder="Search by First Name, Last Name and Email" (ngModelChange)="updateFilters()">
+  </div>
+</div>
 <table class="table">
     <thead>
         <tr>
@@ -15,12 +20,47 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let item of userData">
+        <tr *ngFor="let item of userData | paginate : pagingConfig">
             <td>{{item.first_name}}</td>
             <td>{{item.last_name}}</td>
             <td class="text-break">{{item.email}}</td>
             <td class="text-break" width="20%">{{item.card_keys}}</td>
-            <td></td>
+            <td><a (click)="openDeleteModal(item,confirmViewPopup)" class="danger font-weight-bold">Delete</a></td>
         </tr>
       </tbody>
 </table>
+<div class="row mt-3" *ngIf="this.pagingConfig.totalItems > 0">
+  <div class="col-md-12 text-end">
+    <div class="no-of-row text-end me-2">
+      <label class="control-label no-og-lbl" for="noOfRows"
+        >No. of Rows</label
+      >
+      <select
+        name="noOfRows"
+        (change)="onTableSizeChange($event)"
+        class="form-select form-select-sm"
+      >
+        <option *ngFor="let size of tableSize" [ngValue]="size">
+          {{ size }}
+        </option>
+      </select>
+    </div>
+    <div class="pageing">
+      <pagination-controls (pageChange)="onTableDataChange($event)">
+      </pagination-controls>
+    </div>
+  </div>
+</div>
+<ng-template #confirmViewPopup>
+  <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Confirmation</h4>
+      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="closePopup()"></button>
+    </div>
+    <div class="modal-body">
+    {{deleteMsg}}
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"  (click)="closePopup()">Cancel</button>
+      <button type="button" class="btn green-btn"  (click)="deleteCard()">Confirm</button>
+    </div>
+</ng-template>

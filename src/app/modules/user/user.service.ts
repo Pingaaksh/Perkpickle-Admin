@@ -14,4 +14,8 @@ export class UserService {
     const url = this.API_URL + '/getAllUsers';
     return this.http.post<any>(url, userInfo);
   }
+  public deleteUserDetails(data) {
+    const url = this.API_URL + '/deleteUser';
+    return this.http.post<any>(url, data);
+  }
 }
