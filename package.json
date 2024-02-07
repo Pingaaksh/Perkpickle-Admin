@@ -5,9 +5,9 @@
     "preinstall": "npm install @angular/cli ",
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build --prod",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "heroku-postbuild": "ng build --prod"
   },
   "private": true,
   "dependencies": {
