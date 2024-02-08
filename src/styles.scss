@@ -33,10 +33,16 @@
     color:#aaa !important;
   }
   .table-blue {
-    border:1px solid #1d4289;
+   // border:1px solid #1d4289;
+    tr th:first-child { border-top-left-radius: 5px; }
+    tr th:last-child { border-top-right-radius: 5px; }
     tr th{
       background-color: #1d4289;
       color: #fff;
+      border-bottom:1px solid #1d4289
+    }
+    tbody tr{
+      border:1px solid #1d4289
     }
   
 }
