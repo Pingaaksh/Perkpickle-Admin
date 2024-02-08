@@ -12,6 +12,7 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class UserListComponent {
   userData:any[] = [];
+  rowData:any[] = [];
   modalRef!: BsModalRef;
   deleteMsg:any;
   tableSize = [15, 25, 50, 100];
@@ -37,7 +38,12 @@ export class UserListComponent {
     this.spinner.show();
     this.userService.getAllUserDetails(userInfo).subscribe(res => {       
       this.spinner.hide();    
-      this.userData= res;
+      this.rowData= res;
+      this.rowData.forEach(element => {
+        if(element.is_signup_completed){
+          this.userData.push(element);
+        }
+      })
       this.pagingConfig.totalItems = this.userData.length;
     }, err => {  
       this.spinner.hide();    

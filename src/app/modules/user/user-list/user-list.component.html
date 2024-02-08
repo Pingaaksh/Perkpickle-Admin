@@ -1,5 +1,6 @@
 
-<div class="row">
+<div class="white-bg">
+<div class="row border-bottom border-2 mb-4 border-success">
   <div class="col-md-12">
       <h3>User Information</h3>
   </div>
@@ -9,7 +10,7 @@
     <input class="form-control" type="text" [(ngModel)]="searchText" placeholder="Search by First Name, Last Name and Email" (ngModelChange)="updateFilters()">
   </div>
 </div>
-<table class="table">
+<table class="table table-blue">
     <thead>
         <tr>
           <th >First Name</th>
@@ -25,7 +26,7 @@
             <td>{{item.last_name}}</td>
             <td class="text-break">{{item.email}}</td>
             <td class="text-break" width="20%">{{item.card_keys}}</td>
-            <td><a (click)="openDeleteModal(item,confirmViewPopup)" class="danger font-weight-bold">Delete</a></td>
+            <td><a (click)="openDeleteModal(item,confirmViewPopup)" class="danger font-weight-bold hand" title="Delete"><img src="../../../../assets/delete.png"  width="24"/></a></td>
         </tr>
       </tbody>
 </table>
@@ -51,6 +52,8 @@
     </div>
   </div>
 </div>
+</div>
+<br/>
 <ng-template #confirmViewPopup>
   <div class="modal-header">
       <h4 class="modal-title" id="modal-basic-title">Confirmation</h4>

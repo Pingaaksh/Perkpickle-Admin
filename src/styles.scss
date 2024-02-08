@@ -32,3 +32,18 @@
   .ngx-pagination a, .ngx-pagination button{
     color:#aaa !important;
   }
+  .table-blue {
+    border:1px solid #1d4289;
+    tr th{
+      background-color: #1d4289;
+      color: #fff;
+    }
+  
+}
+.white-bg{
+  background-color: #fff;
+  padding: 20px;
+}
+.hand{
+  cursor: pointer;
+}

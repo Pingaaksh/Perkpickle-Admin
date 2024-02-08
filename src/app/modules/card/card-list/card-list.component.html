@@ -1,4 +1,5 @@
-<div class="row border-bottom border-2 mb-4 border-success">
+<div class="white-bg">
+  <div class="row border-bottom border-2 mb-4 border-success">
     <div class="col-md-6">
         <h3>Card Information</h3>
     </div>
@@ -11,10 +12,10 @@
     <input class="form-control" type="text" [(ngModel)]="searchText" placeholder="Search by Card Key and Name" (ngModelChange)="updateFilters()">
   </div>
 </div>
-<table class="table">
+<table class="table table-blue">
     <thead>
         <tr>
-         <th></th>
+         <th>Image</th>
           <th width="25%">Key</th>
           <th width="25%">Name</th>
           <th width="25%"> Card Issuer</th>
@@ -25,7 +26,7 @@
       <tbody>
         <ng-container  *ngIf="( cardData | filter:'card_key,card_name': searchText | paginate: { itemsPerPage: pagingConfig.itemsPerPage, currentPage: pagingConfig.currentPage}) as result">
           <tr *ngFor="let item of result">
-            <td><img [src]=item.card_image_url width="20"  /></td>
+            <td><img [src]=item.card_image_url width="60"  /></td>
             <td>{{item.card_key}}</td>
             <td>{{item.card_name}}</td>
             <td class="text-break">{{item.card_issuer}}</td>
@@ -34,8 +35,8 @@
                 <span class="badge bg-danger" *ngIf="item.is_disabled">Inactive</span>
             </td>
             <td>
-                <a (click)="editClick(item)" class="danger font-weight-bold">Edit</a> &nbsp; &nbsp;
-                <a (click)="openDeleteModal(item,confirmViewPopup)" class="danger font-weight-bold">Delete</a>
+                <a (click)="editClick(item)" class="hand" title="Edit"><img src="../../../../assets/edit.png"  width="24"/></a> &nbsp; &nbsp;
+                <a (click)="openDeleteModal(item,confirmViewPopup)" class="hand" title="Delete"><img src="../../../../assets/delete.png"  width="24"/></a>
             </td>
         </tr>
         </ng-container>
@@ -64,6 +65,8 @@
       </div>
     </div>
   </div>
+</div>
+<br/>
 <ng-template #confirmViewPopup>
     <div class="modal-header">
         <h4 class="modal-title" id="modal-basic-title">Confirmation</h4>

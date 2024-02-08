@@ -7,22 +7,22 @@ export class AuthService {
   constructor(private http: HttpClient) {}
   setToken(token:any,userInfo:any){
     localStorage.setItem("isLoggedInPerkPickel", "true");
-    localStorage.setItem("access-token",token);
-    localStorage.setItem("userInfo",JSON.stringify(userInfo));
+    localStorage.setItem("access-token-PerkPickel",token);
+    localStorage.setItem("userInfo-PerkPickel",JSON.stringify(userInfo));
   }
   getToken() {
-    return (localStorage.getItem('access-token') ? localStorage.getItem('access-token'): "") ;
+    return (localStorage.getItem('access-token-PerkPickel') ? localStorage.getItem('access-token-PerkPickel'): "") ;
   }
   getUserInfo() {
-    return JSON.parse(localStorage.getItem('userInfo') || '{}');
+    return JSON.parse(localStorage.getItem('userInfo-PerkPickel') || '{}');
   }
   getUserType() {
-    const userInfo = JSON.parse(localStorage.getItem('userInfo') || '{}');
+    const userInfo = JSON.parse(localStorage.getItem('userInfo-PerkPickel') || '{}');
     return userInfo?.accountType;
   }
   logout() {  
-    localStorage.removeItem('access-token'); 
-    localStorage.removeItem('userInfo'); 
+    localStorage.removeItem('access-token-PerkPickel'); 
+    localStorage.removeItem('userInfo-PerkPickel'); 
     localStorage.setItem("isLoggedInPerkPickel", "false");
     //localStorage.clear(); 
   }  
@@ -33,7 +33,7 @@ export class AuthService {
     return false;
   }  
   public get loggedIn(): boolean {  
-    return (localStorage.getItem('access-token') !== null);  
+    return (localStorage.getItem('access-token-PerkPickel') !== null);  
   }  
 
 }
