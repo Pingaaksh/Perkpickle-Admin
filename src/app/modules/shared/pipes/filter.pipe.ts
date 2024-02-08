@@ -4,29 +4,16 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
-  name: 'filter'
+  name: 'filter',
+  pure: true
 })
 export class FilterPipe implements PipeTransform {
-  transform(items: any, filter: any, isAnd: boolean): any {
+  transform(items: any, filter: any, value: any): any {
+    if (!value) return items;
     if (filter && Array.isArray(items)) {
-      let filterKeys = Object.keys(filter);
-      if (isAnd) {
-        return items.filter(item =>
-            filterKeys.reduce((memo, keyName) =>
-                (memo && new RegExp(filter[keyName], 'gi').test(item[keyName])) || filter[keyName] === "", true));
-      } else {
-        return items.filter(item => {
-          return filterKeys.some((keyName) => {
-         //   console.log(keyName);
-            return new RegExp(filter[keyName], 'gi').test(item[keyName]) || filter[keyName] === "";
-          });
-        });
-      }
-    } else {
-      return items;
+      return (items || []).filter(item => filter.split(',').some(key => item.hasOwnProperty(key) && new RegExp(value.trim(), 'gi').test(item[key])));   
     }
-  
-
+  }
  /* transform(items: Array<any>, filter: { [key: string]: any }): Array<any> {
     if (Object.keys(filter).length == 0) return items;
     console.log(filter);
@@ -50,6 +37,5 @@ export class FilterPipe implements PipeTransform {
 
         return !notMatchingField; // true if matches all fields
     }); */
-}
 
 }

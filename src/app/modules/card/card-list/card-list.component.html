@@ -23,7 +23,7 @@
         </tr>
       </thead>
       <tbody>
-        <ng-container  *ngIf="( cardData | paginate : pagingConfig) as result">
+        <ng-container  *ngIf="( cardData | filter:'card_key,card_name': searchText | paginate : pagingConfig) as result">
           <tr *ngFor="let item of result">
             <td><img [src]=item.card_image_url width="20"  /></td>
             <td>{{item.card_key}}</td>
