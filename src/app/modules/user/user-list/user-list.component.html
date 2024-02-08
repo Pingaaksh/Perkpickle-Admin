@@ -20,7 +20,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let item of userData | filter:'first_name,last_name,email': searchText | paginate : pagingConfig">
+        <tr *ngFor="let item of userData | filter:'first_name,last_name,email': searchText | paginate: { itemsPerPage: pagingConfig.itemsPerPage, currentPage: pagingConfig.currentPage }">
             <td>{{item.first_name}}</td>
             <td>{{item.last_name}}</td>
             <td class="text-break">{{item.email}}</td>
