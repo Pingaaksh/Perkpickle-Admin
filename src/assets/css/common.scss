@@ -1,0 +1,107 @@
+.f-24 {
+    font-size: 24px;
+}
+
+.f-14 {
+    font-size: 14px;
+}
+
+.f-16 {
+    font-size: 16px;
+}
+
+.f-18 {
+    font-size: 18px;
+}
+
+.f-40 {
+    font-size: 40px;
+}
+
+.blue-color {
+    color: #1d4289;
+}
+
+.green-color {
+    color: #55a360;
+}
+
+.f-w-700 {
+    font-weight: 700;
+}
+
+.green-btn {
+    background-color: #55a360 !important;
+    border: 1px solid #55a360 !important;
+    color: #ffffff !important;
+}
+
+.login_bg {
+    background: #55a360;
+    color: white;
+    text-align: center;
+    padding-top: 10px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.error {
+    color: #ff0000;
+}
+
+.no-og-lbl {
+    display: flex;
+    white-space: nowrap;
+    padding-right: 5px;
+    padding-top: 5px;
+    color: #cacaca;
+}
+
+.no-of-row {
+    max-width: 180px;
+    display: flex;
+    float: right;
+}
+
+.pageing {
+    float: right;
+    padding-top: 2px;
+    margin-right: 25px;
+}
+
+.ngx-pagination a,
+.ngx-pagination button {
+    color: #aaa !important;
+}
+
+.table-blue {
+
+    // border:1px solid #1d4289;
+    tr th:first-child {
+        border-top-left-radius: 5px;
+    }
+
+    tr th:last-child {
+        border-top-right-radius: 5px;
+    }
+
+    tr th {
+        background-color: #1d4289;
+        color: #fff;
+        border-bottom: 1px solid #1d4289
+    }
+
+    tbody tr {
+        border: 1px solid #1d4289
+    }
+
+}
+
+.white-bg {
+    background-color: #fff;
+    padding: 20px;
+}
+
+.hand {
+    cursor: pointer;
+}

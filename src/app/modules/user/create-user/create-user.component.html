@@ -1,0 +1,111 @@
+<div class="white-bg">
+    <div class="row border-bottom border-2 mb-4 border-success">
+        <div class="col-md-6">
+            <h3 *ngIf="!isEdit">Create User</h3>
+        <h3 *ngIf="isEdit">Update User Detail</h3>
+        </div>
+        <div class="col-md-6 text-end">
+            <button (click)="backClick()" class="btn green-btn">Back</button>
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="col-md-12">
+            <form [formGroup]="userForm" >
+                <div class="row mt-4 ms-5 me-5">              
+                    <div class="col-md-6">
+                        <label class="form-label">First Name<span class="error">*</span> </label>
+                        <input type="text" class="form-control f-14" formControlName="firstName">
+                        <div *ngIf="userForm.controls['firstName'].invalid && (userForm.controls['firstName'].dirty || userForm.controls['firstName'].touched)" class="error">
+                            <div *ngIf="userForm.controls['firstName'].errors['required']">
+                                First Name is required.
+                        </div>
+                        <div *ngIf="userForm.controls['firstName'].errors['pattern']">
+                            First Name allow only Charcter.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label">Last Name<span class="error">*</span> </label>
+                        <input type="text" class="form-control f-14" formControlName="lastName">
+                        <div *ngIf="userForm.controls['lastName'].invalid && (userForm.controls['lastName'].dirty || userForm.controls['lastName'].touched)" class="error">
+                            <div *ngIf="userForm.controls['lastName'].errors['required']">
+                               Last Name is required.
+                        </div>
+                        <div *ngIf="userForm.controls['lastName'].errors['pattern']">
+                            Last Name allow only Charcter.
+                            </div>
+                        </div>
+                    </div>                       
+                </div>
+                <div class="row mt-4 ms-5 me-5">              
+                    <div class="col-md-6">
+                        <label class="form-label">Email<span class="error">*</span> </label>
+                        <input type="text" class="form-control f-14" formControlName="email">
+                        <div *ngIf="userForm.controls['email'].invalid && (userForm.controls['email'].dirty || userForm.controls['email'].touched)" class="error">
+                            <div *ngIf="userForm.controls['email'].errors['required']">
+                                Email is required.
+                        </div>                       
+                        <div *ngIf="userForm.controls['email'].errors['pattern']">
+                            Email is invalid.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6" *ngIf="!isEdit">
+                        <label class="form-label">Password </label>
+                        <input type="password" class="form-control f-14" formControlName="password">
+                        <div *ngIf="userForm.controls['password'].invalid && (userForm.controls['password'].dirty || userForm.controls['password'].touched)" class="error">
+                            <div *ngIf="userForm.controls['password'].errors['required']">
+                               Password is required.
+                        </div>
+                        </div>
+                    </div>                       
+                </div>
+                <div class="row mt-4 ms-5 me-5"> 
+                    <div class="col-md-12">
+                        <label class="form-label">Address </label>
+                        <input type="text" class="form-control f-14" formControlName="address">
+                        <div *ngIf="userForm.controls['address'].invalid && (userForm.controls['address'].dirty || userForm.controls['address'].touched)" class="error">
+                            <div *ngIf="userForm.controls['address'].errors['required']">
+                               Address is required.
+                        </div>
+                        </div>
+                    </div>                       
+                </div>
+                <div class="row mt-4 ms-5 me-5">              
+                    <div class="col-md-6">
+                        <label class="form-label">Zip Code </label>
+                        <input type="text" class="form-control f-14" formControlName="zipCode" maxlength="5">
+                        <div
+                        *ngIf="userForm.controls['zipCode'].invalid && (userForm.controls['zipCode'].dirty || userForm.controls['zipCode'].touched)"
+                        class="error mt-2">
+                        <div *ngIf="userForm.get('zipCode').hasError('pattern')">
+                          Enter 5 Digit Number
+                      </div>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label">Phone Number<span class="error">*</span> </label>
+                        <input type="text" class="form-control f-14" formControlName="phoneNo" placeholder="(123) 234-4567">
+                        <div *ngIf="userForm.controls['phoneNo'].invalid && (userForm.controls['phoneNo'].dirty || userForm.controls['phoneNo'].touched)" class="error">
+                            <div *ngIf="userForm.controls['phoneNo'].errors['required']">
+                               Phone Number is required.
+                        </div>
+                        <div *ngIf="userForm.get('phoneNo').hasError('pattern')">
+                           Enter Proper Phone Number.
+                        </div>
+                        </div>
+                    </div>                       
+                </div>
+                <div class="row mt-3 ms-5 me-5 mb-5">
+                    <div class="col-md-6"></div>
+                    <div class="col-md-6 text-end " >
+                        <button (click)="backClick()" class="btn green-btn">Cancel</button>&nbsp;
+                        <button (click)="saveClick(userForm)" class="btn green-btn"  [disabled]="!userForm.valid">Save</button>
+                    </div>
+                </div>
+            </form>           
+        </div>
+    </div>
+    </div>
+    <br/>
