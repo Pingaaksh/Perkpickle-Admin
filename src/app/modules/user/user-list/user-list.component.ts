@@ -18,7 +18,7 @@ export class UserListComponent {
   tableSize = [15, 25, 50, 100];
   order: string = 'email';
   reverse: boolean = false;
-  searchText: any;
+  searchText: any = "";
   pu: number = 1;
   pagingConfig = {
     currentPage: 1,
@@ -34,17 +34,18 @@ export class UserListComponent {
    this.getAllUser();
   }
   getAllUser(){
-    const userInfo = {};    
+    const userInfo = {
+      pageNumber: this.pagingConfig.currentPage,
+      pageSize:this.pagingConfig.itemsPerPage,
+      sortBy:this.order,
+      sortOrder:!this.reverse ? 'DESC' : 'ASC',
+      search:this.searchText
+    };    
     this.spinner.show();
-    this.userService.getAllUserDetails(userInfo).subscribe(res => {       
-      this.spinner.hide();    
-      this.rowData= res;
-      this.rowData.forEach(element => {
-        if(element.is_signup_completed){
-          this.userData.push(element);
-        }
-      })
-      this.pagingConfig.totalItems = this.userData.length;
+    this.userService.getAllUser(userInfo).subscribe(res => {       
+      this.spinner.hide(); 
+      this.rowData = this.userData= res.data;
+      this.pagingConfig.totalItems = res.totalCount;
     }, err => {  
       this.spinner.hide();    
       console.log("catch", err);
@@ -60,9 +61,20 @@ export class UserListComponent {
   onTableSizeChange(event: any): void {
     this.pagingConfig.itemsPerPage = event.target.value;
     this.pagingConfig.currentPage = 1;
+    this.getAllUser();
   }
   onTableDataChange(event: any) {
     this.pagingConfig.currentPage = event;
+    this.getAllUser();
+  }
+  clearClick(){
+    this.searchText = '';
+    this.pagingConfig.currentPage = 1;
+    this.getAllUser();
+  }
+  searchClick(){
+    this.pagingConfig.currentPage = 1
+    this.getAllUser();
   }
   updateFilters(){
     this.pagingConfig.currentPage = 1;
@@ -89,5 +101,12 @@ export class UserListComponent {
       this.spinner.hide();  
       console.log("catch", err);
     })
+  }
+  openEdit(data){
+    this.userService.userInfoDataForUpdate = data;
+    this.router.navigate(['/user/update']); 
+  }
+  addUser(){
+    this.router.navigate(['/user/create']); 
   }
 }

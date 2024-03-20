@@ -1,19 +1,19 @@
-<div class="sidebar">
+<div class="sidebar" [ngClass]="{'open': menuOpen }">
     <div class="logo-details">
       <i class="bx bxl-c-plus-plus icon"></i>
       <div class="logo_name">perkpickle</div>
-      <i class="bx bx-menu" id="btn"></i>
+      <i class="bx" id="btn" [ngClass]="{'bx-menu': !menuOpen, 'bx-menu-alt-right' : menuOpen }" (click)="ClickMenu()"></i>
     </div>
     <ul class="nav-list">
       <li>
-        <a (click)="clickMe('dashboard')">
+        <a (click)="clickMe('dashboard')" class="hand">
           <i class="bx bx-grid-alt"></i>
           <span class="links_name">Dashboard</span>
         </a>
         <span class="tooltip">Dashboard</span>
       </li>
       <li>
-        <a (click)="clickMe('user')">
+        <a (click)="clickMe('user')" class="hand">
           <i class="bx bx-user"></i>
           <span class="links_name">User</span>
         </a>
@@ -34,7 +34,7 @@
         <span class="tooltip">Analytics</span>
       </li> -->
       <li>
-        <a (click)="clickMe('card')">
+        <a (click)="clickMe('card')" class="hand">
           <i class="bx bx-folder"></i>
           <span class="links_name">Cards</span>
         </a>

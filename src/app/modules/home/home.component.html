@@ -1,1 +1,47 @@
-<h3>Welcome to Admin Panel!</h3>
+    
+<div class="white-bg">
+    <div class="row border-bottom border-2 mb-4 border-success">
+      <div class="col-md-12">
+          <h3>Welcome to Dashboard!</h3>
+      </div>
+    </div>
+
+    
+    <div class="row">
+        <div class="col-md-4 ms-3 me-3">                           
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="row">
+                            <div class="col-md-9"><span class="f-w-700 blue-color f-24" >Active User</span></div>
+                            <div class="col-md-1 "><i class="fa fa-user f-40 f-w-700 green-color" aria-hidden="true"></i></div>
+                            <div class="mt-4"><h5 class="green-color hand" (click)="userClick()">{{countData?.user}}</h5></div>
+                        </div>
+                    </div>           
+            </div>
+        </div>
+        <div class="col-md-4 ms-3 me-3">                         
+                    <div class="card ">
+                        <div class="card-body">
+                            <div class="row"> 
+                            <div class="col-md-9"><span class="f-w-700 blue-color f-24">Active Card</span></div>
+                            <div class="col-md-1 "><i class="fa fa-id-card-o f-40 f-w-700 green-color" aria-hidden="true"></i></div>
+                            <div class="mt-4"><h5 class="green-color hand" (click)="cardClick()">{{countData?.card}}</h5></div>
+                        </div>
+                    </div>           
+            </div>
+        </div>
+        <!-- <div class="col-md-3 ms-3 me-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="row">    
+                            <div class="col-md-9"><span class="f-w-700 blue-color f-24">Inactive Card</span></div>
+                            <div class="col-md-1"><i class="fa fa-id-card-o f-24 f-w-700 green-color" aria-hidden="true"></i></div>
+                            <div class="mt-4"><h5 class="green-color">3000</h5></div>
+                        </div>
+                    </div>           
+            </div>
+        </div> -->
+    </div>
+    <div style="height:300px;"></div>
+</div>
+    

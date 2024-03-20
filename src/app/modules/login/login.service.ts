@@ -13,4 +13,10 @@ export class LoginService {
     const url = this.API_URL + '/login';
     return this.http.post<any>(url, userInfo);
   }
+
+  public dashboardCount() {
+    const url = this.API_URL + '/getDashboardCount';
+    return this.http.get<any>(url);
+  }
+  
 }

@@ -1,0 +1,18 @@
+.search .btn{
+    padding: 8px 11px 7px 12px;
+    border-radius: 0px;
+    background-color: #55a360 !important;
+  }
+  .search-box{
+    height: 40px;
+  }
+  .search input:focus {
+    outline: none;
+    box-shadow:none !important;
+    border-color:#ced4da !important;
+  }
+
+  table {
+    thead th span {visibility: hidden; }
+    thead th.active  span {visibility: visible;}
+}

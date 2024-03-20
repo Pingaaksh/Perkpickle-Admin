@@ -11,7 +11,7 @@
                 <div class="col-md-10 mt-4 mb-4">
                     <form [formGroup]="loginForm">
                         <div class="mb-3">
-                            <label for="username" class="form-label">Username</label>
+                            <label for="username" class="form-label">Email</label>
                             <input type="text" class="form-control" formControlName="email">
                             <div *ngIf="loginForm.controls['email'].invalid && (loginForm.controls['email'].dirty || loginForm.controls['email'].touched)"
                                 class="error">

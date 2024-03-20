@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { LoginService } from './login.service';
 import { AuthService} from '../auth/auth.service';
 import { NgxSpinnerService } from "ngx-spinner";
+import {AlertService} from "../shared/alert";
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -13,7 +14,7 @@ export class LoginComponent {
   loginForm: any;
   passwordEyeHide : boolean = true;
   constructor(public fb: FormBuilder, public router: Router, public authService:AuthService,
-    public loginService:LoginService, private spinner: NgxSpinnerService ) {
+    public loginService:LoginService, private spinner: NgxSpinnerService,public alertService:AlertService ) {
       if (this.authService.loggedIn) {          
           this.router.navigate(['/dashboard']);    
       } 
@@ -55,7 +56,15 @@ export class LoginComponent {
         /** spinner ends after 5 seconds */
       
     }, err => {
+      debugger
       this.spinner.hide();
+      this.alertService.clear();
+      this.alertService.error("Email and Password is not correct!");
+       window.scroll({ 
+         top: 0, 
+         left: 0, 
+         behavior: 'smooth' 
+     }); 
       console.log("catch", err);
     })
   }

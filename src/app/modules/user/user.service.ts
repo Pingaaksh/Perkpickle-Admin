@@ -8,6 +8,7 @@ import { HttpClient } from '@angular/common/http';
 export class UserService {
   API_URL = environment.apiURL;
   userInfo: any;
+  userInfoDataForUpdate:any;
   constructor(private http: HttpClient) {}
 
   public getAllUserDetails(userInfo) {
@@ -16,6 +17,20 @@ export class UserService {
   }
   public deleteUserDetails(data) {
     const url = this.API_URL + '/deleteUser';
+    return this.http.post<any>(url, data);
+  }
+
+  public userUpdate(userInfo) {
+    const url = this.API_URL + '/users/update';
+    return this.http.post<any>(url, userInfo);
+  }
+
+  public userCreate(userInfo) {
+    const url = this.API_URL + '/users/create';
+    return this.http.post<any>(url, userInfo);
+  }
+  public getAllUser(data) {
+    const url = this.API_URL + '/users/all';
     return this.http.post<any>(url, data);
   }
 }

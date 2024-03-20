@@ -7,15 +7,12 @@ import { Router } from '@angular/router';
   styleUrl: './sidebar.component.scss'
 })
 export class SidebarComponent {
-  sidebar:any;
-  closeBtn:any;
-  searchBtn:any;
   constructor(public router: Router){}
-  ngOnInit() {
-   
+  ngOnInit() {   
+
+  }
+  clickMe(url){
+    this.router.navigate([url]); 
   }
  
-  clickMe(url){
-    this.router.navigate([url]);
-  }
 }
