@@ -14,9 +14,10 @@ export class CardListComponent {
   modalRef!: BsModalRef;
   deleteMsg:any;
   tableSize = [15, 25, 50, 100];
-  order: string = 'card_key';
-  reverse: boolean = false;
-  searchText: any;
+  order: string = 'card_name';
+  reverse: boolean = true;
+  searchText: any ="";
+  isLoading = false;
   p: number = 1;
   pagingConfig = {
     currentPage: 1,
@@ -33,13 +34,22 @@ export class CardListComponent {
   }
   getAllCard(){
     this.spinner.show();
-    const cardInfo = {};    
+    const cardInfo = {
+      pageNumber: this.pagingConfig.currentPage,
+      pageSize:this.pagingConfig.itemsPerPage,
+      sortBy:this.order,
+      sortOrder:!this.reverse ? 'DESC' : 'ASC',
+      search:this.searchText
+    };    
+    this.isLoading = true;
     this.cardService.getAllCardDetails(cardInfo).subscribe(res => { 
        this.spinner.hide();
-      this.cardData= res;
-      this.pagingConfig.totalItems = this.cardData.length;
-    }, err => {    
-      this.spinner.hide();  
+       this.isLoading = false;
+      this.cardData= res.data;
+      this.pagingConfig.totalItems = res.totalCount;
+    }, err => {  
+      this.isLoading = false;  
+      this.spinner.hide();        
       console.log("catch", err);
     })
   }
@@ -53,12 +63,20 @@ export class CardListComponent {
   onTableSizeChange(event: any): void {
     this.pagingConfig.itemsPerPage = event.target.value;
     this.pagingConfig.currentPage = 1;
+    this.getAllCard();
   }
   onTableDataChange(event: any) {
     this.pagingConfig.currentPage = event;
+    this.getAllCard();
   }
-  updateFilters(){
+  clearClick(){
+    this.searchText = '';
     this.pagingConfig.currentPage = 1;
+    this.getAllCard();
+  }
+  searchClick(){
+    this.pagingConfig.currentPage = 1
+    this.getAllCard();
   }
   addCard(){
     this.router.navigate(['/card/add']);    

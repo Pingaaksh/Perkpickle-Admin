@@ -11,7 +11,7 @@ export class CardService {
   constructor(private http: HttpClient) {}
 
   public getAllCardDetails(data) {
-    const url = this.API_URL + '/getAllCards';
+    const url = this.API_URL + '/cards/all';
     return this.http.post<any>(url, data);
   }
   public saveCardDetails(data) {

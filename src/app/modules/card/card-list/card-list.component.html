@@ -8,24 +8,41 @@
     </div>
 </div>
 <div class="row">
-  <div class="col-md-6 mb-3">
-    <input class="form-control" type="text" [(ngModel)]="searchText" placeholder="Search by Card Key and Name" (ngModelChange)="updateFilters()">
-  </div>
+  <div class="col-md-12 search col-lg-8 mb-3">
+    <div class="input-group">
+      <input type="text" class="form-control search-box" placeholder="Search by  Card Key and Card Name" [(ngModel)]="searchText">
+      <button type="button" class="btn bg-transparent" style="margin-left: -40px; z-index: 100;background-color: #fff !important;
+      border-top: 1px solid #ccc;border-bottom: 1px solid #ccc;" *ngIf="searchText !== ''" (click)="clearClick()">
+        <i class="fa fa-times-circle error"></i>
+      </button>
+      <div class="input-group-append">
+      <button class="btn btn-secondary" type="button" (click)="searchClick()" >
+      <i class="fa fa-search"></i>
+      </button>
+      </div>
+      </div>
+  </div> 
+  
 </div>
 <table class="table table-blue">
     <thead>
         <tr>
          <th>Image</th>
-          <th width="25%">Key</th>
-          <th width="25%">Name</th>
-          <th width="25%"> Card Issuer</th>
+          <th width="25%" [class.active]="order === 'card_key'"
+          (click)="setOrder('card_key')">Key<span [hidden]="reverse">▼</span>
+            <span [hidden]="!reverse">▲</span></th>
+          <th width="25%" [class.active]="order === 'card_name'"
+          (click)="setOrder('card_name')">Name<span [hidden]="reverse">▼</span>
+            <span [hidden]="!reverse">▲</span></th>
+          <th width="25%" [class.active]="order === 'card_issuer'"
+          (click)="setOrder('card_issuer')"> Card Issuer<span [hidden]="reverse">▼</span>
+            <span [hidden]="!reverse">▲</span></th>
           <th> Status</th>
           <th >Action</th>
         </tr>
       </thead>
-      <tbody>
-        <ng-container  *ngIf="( cardData | filter:'card_key,card_name': searchText | paginate: { itemsPerPage: pagingConfig.itemsPerPage, currentPage: pagingConfig.currentPage}) as result">
-          <tr *ngFor="let item of result">
+      <tbody *ngIf="!this.isLoading">
+         <tr *ngFor="let item of cardData | paginate : pagingConfig">
             <td><img [src]=item.card_image_url width="60"  /></td>
             <td>{{item.card_key}}</td>
             <td>{{item.card_name}}</td>
@@ -38,9 +55,12 @@
                 <a (click)="editClick(item)" class="hand" title="Edit"><img src="../../../../assets/edit.png"  width="24"/></a> &nbsp; &nbsp;
                 <a (click)="openDeleteModal(item,confirmViewPopup)" class="hand" title="Delete"><img src="../../../../assets/delete.png"  width="24"/></a>
             </td>
-        </tr>
-        </ng-container>
-        
+        </tr>   
+        <tr *ngIf="(cardData).length === 0">
+          <td colspan="4">
+            <span class="error">No Record Found!!</span>
+          </td>
+        </tr>     
       </tbody>
 </table>
 <div class="row mt-3" *ngIf="this.pagingConfig.totalItems > 0">

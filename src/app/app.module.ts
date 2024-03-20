@@ -15,6 +15,7 @@ import { NgxSpinnerModule } from 'ngx-spinner';
 import { LogoutComponent } from './modules/logout/logout.component';
 import { BrowserAnimationsModule, provideAnimations } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
+import { AlertModule } from './modules/shared/alert';
 @NgModule({
   declarations: [
     AppComponent,
@@ -28,6 +29,7 @@ import { ToastrModule } from 'ngx-toastr';
     HttpClientModule,
     ReactiveFormsModule,
     TemplateModule,
+    AlertModule,
     BrowserAnimationsModule,
     NgxSpinnerModule,
     ToastrModule.forRoot({
@@ -37,7 +39,7 @@ import { ToastrModule } from 'ngx-toastr';
     }),
     AppRoutingModule   
   ],
-  exports: [ FormsModule, ReactiveFormsModule],
+  exports: [ FormsModule, ReactiveFormsModule, AlertModule],
   providers: [BsModalService, AuthGuard, AuthService,
     MyHttpInterceptor, {
       provide: HTTP_INTERCEPTORS,

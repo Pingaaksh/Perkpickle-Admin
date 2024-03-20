@@ -43,7 +43,7 @@
                     </div>
                 </div>
                 <div class="col-md-6">
-                    <label class="form-label">Card Image URL </label>
+                    <label class="form-label">Card Image URL<span class="error">*</span> </label>
                     <input type="text" class="form-control f-14" formControlName="cardImg">
                     <div *ngIf="cardForm.controls['cardImg'].invalid && (cardForm.controls['cardImg'].dirty || cardForm.controls['cardImg'].touched)" class="error">
                         <div *ngIf="cardForm.controls['cardImg'].errors['required']">
