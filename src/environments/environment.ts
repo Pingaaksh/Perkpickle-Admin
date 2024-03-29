@@ -1,5 +1,5 @@
 export const environment = {
-    production: false,
+    production: true,
     // Production
-    apiURL: "https://perk-pickle-7c87ea004712.herokuapp.com",
+    apiURL: "https://prod-perkpickle-backend-d2a9ba1cbd6d.herokuapp.com",
 };
