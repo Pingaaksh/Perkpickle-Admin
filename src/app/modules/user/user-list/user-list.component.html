@@ -1,93 +1,87 @@
-
 <div class="white-bg">
-<div class="row border-bottom border-2 mb-4 border-success">
-  <div class="col-md-6">
-      <h3>User Information</h3>
-  </div>
-  <div class="col-md-6 text-end">
-      <button (click)="addUser()" class="btn green-btn">Add User</button>
-  </div>
-</div>
-<div class="row">
-  <div class="col-md-12 search col-lg-8 mb-3">
-    <div class="input-group">
-      <input type="text" class="form-control search-box" placeholder="Search by First Name and Last Name" [(ngModel)]="searchText">
-      <button type="button" class="btn bg-transparent" style="margin-left: -40px; z-index: 100;background-color: #fff !important;
+    <div class="row border-bottom border-2 mb-4 border-success">
+        <div class="col-md-6">
+            <h3>User Information</h3>
+        </div>
+        <div class="col-md-6 text-end">
+            <button (click)="addUser()" class="btn green-btn">Add User</button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12 search col-lg-8 mb-3">
+            <div class="input-group">
+                <input type="text" class="form-control search-box" placeholder="Search by First Name and Last Name" [(ngModel)]="searchText">
+                <button type="button" class="btn bg-transparent" style="margin-left: -40px; z-index: 100;background-color: #fff !important;
       border-top: 1px solid #ccc;border-bottom: 1px solid #ccc;" *ngIf="searchText !== ''" (click)="clearClick()">
-        <i class="fa fa-times-circle error"></i>
-      </button>
-      <div class="input-group-append">
-      <button class="btn btn-secondary" type="button" (click)="searchClick()" >
-      <i class="fa fa-search"></i>
-      </button>
-      </div>
-      </div>
-  </div> 
-  
-</div>
-<table class="table table-blue">
-    <thead>
-        <tr>
-          <th [class.active]="order === 'first_name'"
-          (click)="setOrder('first_name')">First Name<span [hidden]="reverse">▼</span>
-            <span [hidden]="!reverse">▲</span></th>
-          <th [class.active]="order === 'last_name'"
-          (click)="setOrder('last_name')">Last Name<span [hidden]="reverse">▼</span>
-            <span [hidden]="!reverse">▲</span></th>
-          <th [class.active]="order === 'email'"
-          (click)="setOrder('email')">Email<span [hidden]="reverse">▼</span>
-            <span [hidden]="!reverse">▲</span></th>
-          <th width="20%">Cards</th>
-          <th >Action</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let item of userData | paginate : pagingConfig">
-            <td>{{item.first_name}}</td>
-            <td>{{item.last_name}}</td>
-            <td class="text-break">{{item.email}}</td>
-            <td class="text-break" width="20%">{{item.card_keys}}</td>
-            <td>
-              <a (click)="openEdit(item)" class="hand" title="Edit"><img src="../../../../assets/edit.png"  width="24"/></a> &nbsp; &nbsp;
-              <a (click)="openDeleteModal(item,confirmViewPopup)" class="hand" title="Delete"><img src="../../../../assets/delete.png"  width="24"/></a>
-            </td>
-        </tr>
-      </tbody>
-</table>
-<div class="row mt-3" *ngIf="this.pagingConfig.totalItems > 0">
-  <div class="col-md-12 text-end">
-    <div class="no-of-row text-end me-2">
-      <label class="control-label no-og-lbl" for="noOfRows"
-        >No. of Rows</label
-      >
-      <select
-        name="noOfRows"
-        (change)="onTableSizeChange($event)"
-        class="form-select form-select-sm"
-      >
-        <option *ngFor="let size of tableSize" [ngValue]="size">
-          {{ size }}
-        </option>
-      </select>
+                    <i class="fa fa-times-circle error"></i>
+                </button>
+                <div class="input-group-append">
+                    <button class="btn btn-secondary" type="button" (click)="searchClick()">
+                        <i class="fa fa-search"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
     </div>
-    <div class="pageing">
-      <pagination-controls (pageChange)="onTableDataChange($event)">
-      </pagination-controls>
+    <table class="table table-blue">
+        <thead>
+            <tr>
+                <th [class.active]="order === 'first_name'" (click)="setOrder('first_name')">First Name<span [hidden]="reverse">▼</span>
+                    <span [hidden]="!reverse">▲</span>
+                </th>
+                <th [class.active]="order === 'last_name'" (click)="setOrder('last_name')">Last Name<span [hidden]="reverse">▼</span>
+                    <span [hidden]="!reverse">▲</span>
+                </th>
+                <th [class.active]="order === 'email'" (click)="setOrder('email')">Email<span [hidden]="reverse">▼</span>
+                    <span [hidden]="!reverse">▲</span>
+                </th>
+                <th width="20%">Cards</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of userData | paginate : pagingConfig">
+                <td>{{item.first_name}}</td>
+                <td>{{item.last_name}}</td>
+                <td class="text-break">{{item.email}}</td>
+                <td class="text-break" width="20%">{{item.card_keys}}</td>
+                <td>
+                    <a (click)="openEdit(item)" class="hand" title="Edit"><img src="../../../../assets/edit.png" width="24" /></a> &nbsp; &nbsp;
+                    <!-- <a (click)="openDeleteModal(item,confirmViewPopup)" class="hand" title="Delete"><img src="../../../../assets/delete.png"  width="24"/></a> -->
+                    <a (click)="openDeleteModal(item,confirmViewPopup)" class="hand" title="Delete" *ngIf="!item?.is_admin"><img src="../../../../assets/delete.png" width="24" /></a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="row mt-3" *ngIf="this.pagingConfig.totalItems > 0">
+        <div class="col-md-12 text-end">
+            <div class="no-of-row text-end me-2">
+                <label class="control-label no-og-lbl" for="noOfRows">No. of Rows</label>
+                <select name="noOfRows" (change)="onTableSizeChange($event)" class="form-select form-select-sm">
+                    <option *ngFor="let size of tableSize" [ngValue]="size">
+                        {{ size }}
+                    </option>
+                </select>
+            </div>
+            <div class="pageing">
+                <pagination-controls (pageChange)="onTableDataChange($event)">
+                </pagination-controls>
+            </div>
+        </div>
     </div>
-  </div>
 </div>
-</div>
-<br/>
+<br />
 <ng-template #confirmViewPopup>
-  <div class="modal-header">
-      <h4 class="modal-title" id="modal-basic-title">Confirmation</h4>
-      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="closePopup()"></button>
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Confirmation</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="closePopup()"></button>
     </div>
     <div class="modal-body">
-    {{deleteMsg}}
+        {{deleteMsg}}
     </div>
     <div class="modal-footer">
-      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"  (click)="closePopup()">Cancel</button>
-      <button type="button" class="btn green-btn"  (click)="deleteCard()">Confirm</button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="closePopup()">Cancel</button>
+        <button type="button" class="btn green-btn" (click)="deleteCard()">Confirm</button>
     </div>
 </ng-template>
