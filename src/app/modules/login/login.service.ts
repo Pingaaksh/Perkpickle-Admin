@@ -11,7 +11,7 @@ export class LoginService {
 
     public authenticateUser(userInfo) {
         //const url = this.API_URL + '/login';
-        const url = this.API_URL + 'adminlogin';
+        const url = this.API_URL + '/adminlogin';
         return this.http.post<any>(url, userInfo);
     }
 
